@@ -260,6 +260,7 @@ do
   elif [ "${program}" == "pocl" ]; then
     check_if_ventus_built
     check_if_ocl_icd_built
+    export_elements
     build_pocl
   else
     echo "Invalid build options: \"${program}\" , try $0 --help for help"

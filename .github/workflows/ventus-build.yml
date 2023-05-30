@@ -3,6 +3,7 @@ env:
   POCL: pocl
   OCL_ICD: ocl-icd
   ISA_SIMULATOR: ventus-gpgpu-isa-simulator
+  LLVM_VERSION: 15
   BUILD_TYPE: Release
   VENTUS_DRIVER: ventus-driver
 on:
@@ -33,7 +34,11 @@ jobs:
         sudo apt-get install -y \
         device-tree-compiler \
         bsdmainutils \
-        ccache
+        ccache \
+        clang-$LLVM_VERSION \
+        llvm-$LLVM_VERSION \
+        libclang-cpp$LLVM_VERSION-dev libclang-cpp$LLVM_VERSION \
+        llvm-$LLVM_VERSION-dev
 
     - name: Clone needed packages
       run: |
