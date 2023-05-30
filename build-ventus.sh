@@ -209,7 +209,7 @@ export_elements() {
 
 # When no need to build llvm-ventus, export needed elements
 found=false
-for item in "${PROGRAMS_TOBUILD}[@]}"; do
+for item in "${PROGRAMS_TOBUILD[@]}"; do
     if [[ "$item" == "llvm-ventus" ]]; then
         found=true
         break
@@ -217,7 +217,7 @@ for item in "${PROGRAMS_TOBUILD}[@]}"; do
 done
 
 # 判断是否找到元素
-if [ ! $found ] ; then
+if [ $found == "false" ] ; then
   export_elements
 fi
 
