@@ -208,9 +208,19 @@ export_elements() {
 }
 
 # When no need to build llvm-ventus, export needed elements
-if [[ ! "${PROGRAMS_TOBUILD[*]}" =~ "llvm-ventus" ]];then
+found=false
+for item in "${PROGRAMS_TOBUILD}[@]}"; do
+    if [[ "$item" == "llvm-ventus" ]]; then
+        found=true
+        break
+    fi
+done
+
+# 判断是否找到元素
+if [ ! $found ] ; then
   export_elements
 fi
+
 
 # Check llvm-ventus is built or not
 check_if_ventus_built() {
