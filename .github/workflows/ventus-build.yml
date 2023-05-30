@@ -34,10 +34,8 @@ jobs:
         sudo apt-get install -y \
         device-tree-compiler \
         ccache \
-        clang-$LLVM_VERSION \
-        llvm-$LLVM_VERSION \
+        bsdmainutils \
         libclang-cpp$LLVM_VERSION-dev libclang-cpp$LLVM_VERSION \
-        llvm-$LLVM_VERSION-dev
 
     - name: Clone needed packages
       run: |
