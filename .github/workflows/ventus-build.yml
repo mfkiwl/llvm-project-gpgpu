@@ -8,7 +8,7 @@ env:
   VENTUS_DRIVER: ventus-driver
 on:
   push:
-    branches: [ main ]
+    branches: [ workflow-test ]
   schedule:
     - cron: '0 2 * * *' # Runs at 2am everyday
 jobs:
