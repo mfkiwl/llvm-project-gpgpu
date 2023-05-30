@@ -150,6 +150,7 @@ build_spike() {
 build_pocl() {
   mkdir ${POCL_BUILD_DIR} || true
   cd ${POCL_DIR}
+  ninja -C ${POCL_BUILD_DIR} clean || true
   cmake -G Ninja -B ${POCL_BUILD_DIR} . \
     -DENABLE_HOST_CPU_DEVICES=OFF \
     -DENABLE_VENTUS=ON \
@@ -170,6 +171,7 @@ build_libclc() {
   if [ ! -d "${LIBCLC_BUILD_DIR}" ]; then
     mkdir ${LIBCLC_BUILD_DIR}
   fi
+  ninja -C ${LIBCLC_BUILD_DIR} clean || true
   cd ${LIBCLC_BUILD_DIR}
   cmake -G Ninja -B ${LIBCLC_BUILD_DIR} ${DIR}/libclc \
     -DCMAKE_LLAsm_COMPILER_WORKS=ON \
