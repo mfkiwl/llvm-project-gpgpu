@@ -128,8 +128,8 @@ build_driver() {
   mkdir ${DRIVER_BUILD_DIR} || true
   cd ${DRIVER_DIR}
   cmake -G Ninja -B ${DRIVER_BUILD_DIR} . \
-    -DCMAKE_C_COMPILER=clang \
-    -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_C_COMPILER=${VENTUS_INSTALL_PREFIX}/bin/clang \
+    -DCMAKE_CXX_COMPILER=${VENTUS_INSTALL_PREFIX}/bin/clang++ \
     -DENABLE_INSTALL=ON \
     -DCMAKE_INSTALL_PREFIX=${VENTUS_INSTALL_PREFIX}
   ninja -C ${DRIVER_BUILD_DIR}
@@ -158,8 +158,8 @@ build_pocl() {
     -DDEFAULT_ENABLE_ICD=ON \
     -DENABLE_TESTS=OFF \
     -DSTATIC_LLVM=OFF \
-    -DCMAKE_C_COMPILER=clang \
-    -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_C_COMPILER=${VENTUS_INSTALL_PREFIX}/bin/clang \
+    -DCMAKE_CXX_COMPILER=${VENTUS_INSTALL_PREFIX}/bin/clang++ \
     -DCMAKE_CXX_FLAGS="-fuse-ld=lld" \
     -DCMAKE_INSTALL_PREFIX=${VENTUS_INSTALL_PREFIX}
   ninja -C ${POCL_BUILD_DIR}
@@ -180,8 +180,8 @@ build_libclc() {
     -DCMAKE_LLAsm_FLAGS="-target riscv32 -mcpu=ventus-gpgpu" \
     -DLIBCLC_TARGETS_TO_BUILD="riscv32--" \
     -DCMAKE_CXX_FLAGS="-I ${DIR}/llvm/include/ -std=c++17" \
-    -DCMAKE_C_COMPILER=clang \
-    -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_C_COMPILER=${VENTUS_INSTALL_PREFIX}/bin/clang \
+    -DCMAKE_CXX_COMPILER=${VENTUS_INSTALL_PREFIX}/bin/clang++ \
     -DCMAKE_INSTALL_PREFIX=${VENTUS_INSTALL_PREFIX}
   ninja
   ninja install
@@ -204,6 +204,7 @@ build_icd_loader() {
 # Export needed path and enviroment variables
 export_elements() {
   export PATH=${VENTUS_INSTALL_PREFIX}/bin:$PATH
+  echo "******$PATH"
   export LD_LIBRARY_PATH=${VENTUS_INSTALL_PREFIX}/lib:$LD_LIBRARY_PATH
   export SPIKE_SRC_DIR=${SPIKE_DIR}
   export SPIKE_TARGET_DIR=${VENTUS_INSTALL_PREFIX}

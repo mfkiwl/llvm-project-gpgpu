@@ -35,7 +35,10 @@ jobs:
         device-tree-compiler \
         ccache \
         bsdmainutils \
+        clang-$LLVM_VERSION \
+        llvm-$LLVM_VERSION \
         libclang-cpp$LLVM_VERSION-dev libclang-cpp$LLVM_VERSION \
+        llvm-$LLVM_VERSION-dev
 
     - name: Clone needed packages
       run: |
